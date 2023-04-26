@@ -8,7 +8,7 @@ pipeline{
         GIT_REPO = "https://github.com/mayank-singh-care/todo-pipeline.git"
         GIT_BRANCH = "main"
     }
-    satges {
+    stages {
         stage('Checkout') {
             steps {
                 git branch: "${GIT_BRANCH}", url: "${GIT_REPO}"
