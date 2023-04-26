@@ -3,10 +3,10 @@ pipeline{
     environment {
         PORT = "85"
         DOCKERHUB_CREDENTIAL_ID = "dockerhub"
-        IMAGE_NAME = "mayank-singh-care/todo-pipeline"
-        CONTAINER_NAME = "my server"
+        IMAGE_NAME = "mayanksinghcare/devops-project"
+        CONTAINER_NAME = "devops-project"
         GIT_REPO = "https://github.com/mayank-singh-care/todo-pipeline.git"
-        GIT-BRANCH = "main"
+        GIT_BRANCH = "main"
     }
     satges {
         stage('Checkout') {
@@ -17,7 +17,7 @@ pipeline{
         stage('Build and push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry("https://registry.hub.docker.com","${DOCKER_CREDENTIAL_ID}") {
+                    docker.withRegistry("https://registry.hub.docker.com","${DOCKERHUB_CREDENTIAL_ID}") {
                         def app = docker.build("${IMAGE_NAME}:${env.BUILD_NUMBER}",".")
                         app.push()
                     }
